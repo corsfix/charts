@@ -153,7 +153,7 @@ export default function Page() {
               }
             }
           } catch (e) {
-            /* Ignore parsing error, use status code */
+            console.error(e);
           }
           throw new Error(errorMsg);
         }
@@ -170,6 +170,7 @@ export default function Page() {
           throw new Error("Failed to parse track data from API response.");
         }
 
+        /* eslint-disable  @typescript-eslint/no-explicit-any */
         const mappedSongs: Song[] = data.tracks.data.map((track: any) => ({
           id: track.id,
           title: track.title_short || track.title,
